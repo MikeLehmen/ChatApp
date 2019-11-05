@@ -1,5 +1,3 @@
-<p>login works!</p>
-
 <!-- <div *ngIf="afAuth.user | async as user; else showLogin">
     <h1>Hello {{ userName }}!</h1>
     <h2>Here's your data:</h2>
@@ -12,16 +10,7 @@
     <p>Please login.</p>
     <button (click)="login()">Login with Email</button>
   </ng-template> -->
-
-  <div *ngIf="afAuth.user | async as user">
-        <h1>Hello {{ userName }}!</h1>
-        <h2>Here's your data:</h2>
-        <ul>
-          <li class="text" *ngFor="let item of items | async">{{ item }} </li>
-        </ul>
-        <button (click)="logout()">Logout</button>
-      </div>
-
+<h1>Login to Chat App</h1>
   <div>
       <form #loginForm="ngForm"
         (ngSubmit)="onSubmit(loginForm.value)">
@@ -43,3 +32,4 @@
         <button type="submit">Submit</button>
     </form>
   </div>
+  <button (click)="logout()">Logout</button>

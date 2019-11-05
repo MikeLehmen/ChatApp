@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 
-import { AngularFireAuth } from '@angular/fire/auth'
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { Observer } from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -12,16 +14,12 @@ import { AngularFireAuth } from '@angular/fire/auth'
 })
 export class LoginComponent implements OnInit {
   items: Observable<any>;
+  user: Observable<any>;
 
-  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) { 
+  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth, private router: Router) { 
     this.items = db.list('testList').valueChanges();
-  }
-
-  login() {
-    this.afAuth.auth.signInWithEmailAndPassword(this.userName, this.pw)
-      .catch( function(error) {
-        console.log(error);
-      });
+    this.user = afAuth.user;
+    this.user.subscribe(function() { router.navigate(['chat'])});   // when new user is emitted from auth, call router nav
   }
 
   logout() {
@@ -30,10 +28,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form: any) {
     console.log(form);
-    this.submitLogin(form.userName, form.pw);
+    this.login(form.userName, form.pw);
+    
+    
+    // doesn't wait for authentication call to come back
+    //this.router.navigate(['chat']);
   }
 
-  submitLogin(user: string, pass: string) {
+  login(user: string, pass: string) {
     this.afAuth.auth.signInWithEmailAndPassword(user, pass)
       .catch( function(error) {
         console.log(error);

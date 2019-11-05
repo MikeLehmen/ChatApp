@@ -28,6 +28,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { LoginComponent } from './login/login.component';
+import { LoginGuard } from './login/login-guard.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { LoginComponent } from './login/login.component';
     AngularFireStorageModule
   ],
   providers: [
-    MessagesService, ThreadsService, UsersService, AngularFireDatabase
+    MessagesService, ThreadsService, UsersService, AngularFireDatabase, LoginGuard
   ],
 
   bootstrap: [AppComponent]
