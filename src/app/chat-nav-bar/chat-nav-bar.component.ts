@@ -29,7 +29,6 @@ export class ChatNavBarComponent implements OnInit {
   }
 
   logout(): void {
-    console.log('called nav logout');
     this.afAuth.auth.signOut();
     this.router.navigate(['login']);
   }

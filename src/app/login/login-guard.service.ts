@@ -16,7 +16,6 @@ export class LoginGuard implements CanActivate {
             map((user) => !!user),
             tap((loggedIn) => {
                 if (!loggedIn) {
-                    console.log('Log in denied');
                     this.router.navigate(['login']);
                 }
             })

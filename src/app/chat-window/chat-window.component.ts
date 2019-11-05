@@ -62,7 +62,6 @@ export class ChatWindowComponent implements OnInit {
   }
 
   toggleChat(): void {
-    console.log(this.showChat);
     this.showChat = !this.showChat;
   }
 

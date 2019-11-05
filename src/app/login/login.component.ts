@@ -27,12 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form: any) {
-    console.log(form);
     this.login(form.userName, form.pw);
-    
-    
-    // doesn't wait for authentication call to come back
-    //this.router.navigate(['chat']);
   }
 
   login(user: string, pass: string) {
