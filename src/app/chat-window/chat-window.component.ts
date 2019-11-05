@@ -26,6 +26,8 @@ export class ChatWindowComponent implements OnInit {
   draftMessage: Message;
   currentUser: User;
 
+  showChat: boolean;
+
   constructor(public messagesService: MessagesService,
               public threadsService: ThreadsService,
               public UsersService: UsersService,
@@ -55,6 +57,13 @@ export class ChatWindowComponent implements OnInit {
             this.scrollToBottom();
           });
         });
+
+    this.showChat = true;
+  }
+
+  toggleChat(): void {
+    console.log(this.showChat);
+    this.showChat = !this.showChat;
   }
 
   onEnter(event: any): void {

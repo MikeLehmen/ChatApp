@@ -1,3 +1,17 @@
 .noDisplay {
     display: none;
 }
+
+.open-chat-button {
+    position: fixed;
+    left: 80%;
+    bottom: 15%;
+    height: 100px;
+    width: 100px;
+}
+
+.logout-button {
+    position: fixed;
+    left: 15%;
+    bottom: 15%;
+}

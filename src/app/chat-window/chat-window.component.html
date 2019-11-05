@@ -12,10 +12,11 @@
           </div>
           <div class="panel-buttons-container">
             <!-- you could put minimize or close buttons here -->
+            <button (click)="toggleChat()" class="toggleTextColor">Toggle Chat Window</button>
           </div>
         </div>
 
-        <div class="panel-body msg-container-base">
+        <div [ngClass]="{ noDisplay : !showChat }" class="panel-body msg-container-base">
           <chat-message
           *ngFor="let message of messages | async"
           [message]="message">

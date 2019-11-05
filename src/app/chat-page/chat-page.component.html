@@ -2,8 +2,13 @@
   <chat-nav-bar></chat-nav-bar>
   <div class="container">
     <chat-threads></chat-threads>
-    <chat-window [ngClass]="{ noDisplay : !chatWindowActive }"></chat-window>
-    <button (click)="toggleChat()">Toggle Chat Window</button>
+    <!-- <chat-window [ngClass]="{ noDisplay : !chatWindowActive }"></chat-window> -->
+    <chat-window *ngIf="chatActivated"></chat-window>
   </div>
-  <button (click)="logout()">Log Out</button>
+  <!-- <div>
+    <button (click)="logout()" class="logout-button btn btn-primary">Log Out</button>
+  </div> -->
+  <div>
+    <button *ngIf="!chatActivated" (click)="activateChat()" class="open-chat-button btn btn-success">Chat Now!</button>
+  </div>
 </div>

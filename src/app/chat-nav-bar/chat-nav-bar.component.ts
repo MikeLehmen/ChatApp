@@ -11,6 +11,9 @@ import { MessagesService } from './../message/messages.service';
 import { Thread } from './../thread/thread.model';
 import { Message } from './../message/message.model';
 
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router'
+
 @Component({
   selector: 'chat-nav-bar',
   templateUrl: './chat-nav-bar.component.html',
@@ -20,7 +23,15 @@ export class ChatNavBarComponent implements OnInit {
   unreadMessagesCount: number;
 
   constructor(public messagesService: MessagesService,
-              public threadsService: ThreadsService) {
+              public threadsService: ThreadsService,
+              private afAuth: AngularFireAuth, 
+              private router: Router) {
+  }
+
+  logout(): void {
+    console.log('called nav logout');
+    this.afAuth.auth.signOut();
+    this.router.navigate(['login']);
   }
 
   ngOnInit(): void {
