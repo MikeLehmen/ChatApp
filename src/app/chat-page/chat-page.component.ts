@@ -8,17 +8,24 @@ import { Router } from '@angular/router'
   styleUrls: ['./chat-page.component.css']
 })
 export class ChatPageComponent implements OnInit {
+  chatWindowActive: boolean;
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
+    this.chatWindowActive = false;
+  }
 
   ngOnInit() {
   }
 
   // hack for right now
-  logout()
-  {
+  logout() {
     this.afAuth.auth.signOut();
     this.router.navigate(['login']);
+  }
+
+  toggleChat() {
+    console.log("before click: " + this.chatWindowActive);
+    this.chatWindowActive = !this.chatWindowActive;
   }
 
 }
