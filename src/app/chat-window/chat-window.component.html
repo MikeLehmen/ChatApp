@@ -23,7 +23,7 @@
         </chat-message>
       </div>
 
-      <div class="panel-footer">
+      <div [ngClass]="{ noDisplay : !showChat }" class="panel-footer">
         <div class="input-group">
           <input type="text"
           class="chat-input"

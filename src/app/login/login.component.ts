@@ -1,25 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { Observer } from 'firebase';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-  items: Observable<any>;
-  user: Observable<any>;
+export class LoginComponent implements OnInit, OnDestroy {
+  authObservable: Observable<any>;
+  authObserver: any;
 
-  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth, private router: Router) { 
-    this.items = db.list('testList').valueChanges();
-    this.user = afAuth.user;
-    this.user.subscribe(function() { router.navigate(['chat'])});   // when new user is emitted from auth, call router nav
+  constructor(private afAuth: AngularFireAuth, private router: Router) { 
+    this.authObservable = afAuth.user;
+    this.authObserver = this.authObservable.subscribe(function() { router.navigate(['chat'])});   // when new user is emitted from auth, call router nav
   }
 
   logout() {
@@ -38,6 +35,12 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    // type error when subscribing here, so left it in ctor
+  }
+
+  ngOnDestroy() {
+    // unsubscribe from 
+    this.authObserver.unsubscribe();
   }
 
 }
